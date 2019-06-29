@@ -1,0 +1,47 @@
+<div id="srchBx" class="container">
+  <div class="form-group ">
+    <input type="text" class="form-control" id="usrNme" [(ngModel)]="uname" (keyup)="search()">
+  </div>
+  <div *ngIf="userData">
+    <div class="card">
+      <div class="card-header"><a href="{{userData.html_url}}"
+          style="text-decoration: none;">{{userData.name}}({{userData.login}})</a></div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3">
+            <div class="card">
+              <img class="img-fluid img-thumbnail" src="{{userData.avatar_url}}" alt="Card image">
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="card">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngIf="show">{{userData.bio}}</li>
+                <li class="list-group-item">{{userData.blog}}</li>
+                <li class="list-group-item">{{userData.company}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <p>
+              <span class="badge badge-warning mr-1">{{userData.following}} Following</span>
+              <span class="badge badge-success mr-1">{{userData.followers}} Followers</span>
+              <span class="badge badge-primary mr-1">{{userData.public_gists}} Gists</span>
+              <span class="badge badge-primary mr-1">{{userData.public_repos}} Repos</span>
+            </p>
+            <div class="card">
+              <div class="card-header">Public Repositories</div>
+              <div class="card-body">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr *ngFor="let data of repo"><a href="{{data.url}}"
+                        style="text-decoration: none;">{{data.name}}</a></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
